@@ -10,7 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 
 @Service
-public class ApplicationDelet {
+public class ApplicationDelete {
   @Autowired
   HikariDataSource hds;
 
