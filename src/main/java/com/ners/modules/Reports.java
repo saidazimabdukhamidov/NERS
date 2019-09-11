@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class reports {
+public class Reports {
   private Integer report_id;
   private String report_name;
   private Integer fund;

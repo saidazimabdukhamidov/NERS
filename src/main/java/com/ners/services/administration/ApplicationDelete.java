@@ -1,6 +1,6 @@
 package com.ners.services.administration;
 
-import com.ners.utils.dataBase;
+import com.ners.utils.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 
 @Service
-public class applicationDelete {
+public class ApplicationDelete {
   @Autowired
   HikariDataSource hds;
 
@@ -25,8 +25,8 @@ public class applicationDelete {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(cs);
-      dataBase.close(conn);
+      DataBase.close(cs);
+      DataBase.close(conn);
     }
     return "registration-table";
   }

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class dataBase {
+public class DataBase {
   public static void close(Connection object) {
     try {
       if (object != null) {

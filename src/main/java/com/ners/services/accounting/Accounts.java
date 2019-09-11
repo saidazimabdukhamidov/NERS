@@ -1,8 +1,8 @@
 package com.ners.services.accounting;
 
 import com.google.gson.JsonObject;
-import com.ners.modules.reports;
-import com.ners.utils.dataBase;
+import com.ners.modules.Reports;
+import com.ners.utils.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Service
-public class accounts {
+public class Accounts {
   @Autowired
   HikariDataSource hds;
 
   public String readReports(Model model) {
-    ArrayList<reports> report = new ArrayList<>();
+    ArrayList<Reports> report = new ArrayList<>();
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -31,7 +31,7 @@ public class accounts {
       ps.execute();
       rs = ps.getResultSet();
       while (rs.next()) {
-        reports r = new reports();
+        Reports r = new Reports();
         r.setReport_id(rs.getInt("report_id"));
         r.setReport_name(rs.getString("report_name"));
         r.setFund(rs.getInt("fund"));
@@ -43,9 +43,9 @@ public class accounts {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(rs);
-      dataBase.close(ps);
-      dataBase.close(conn);
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
     }
     return "reports";
   }
@@ -75,8 +75,8 @@ public class accounts {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(cs);
-      dataBase.close(conn);
+      DataBase.close(cs);
+      DataBase.close(conn);
     }
     return json.toString();
   }

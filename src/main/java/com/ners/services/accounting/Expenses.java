@@ -1,7 +1,7 @@
 package com.ners.services.accounting;
 
-import com.ners.modules.transactions;
-import com.ners.utils.dataBase;
+import com.ners.modules.Transactions;
+import com.ners.utils.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Service
-public class expenses {
+public class Expenses {
   @Autowired
   HikariDataSource hds;
 
   public String readExpenses(Model model) {
-    ArrayList<transactions> transaction = new ArrayList<>();
+    ArrayList<Transactions> transaction = new ArrayList<>();
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -31,7 +31,7 @@ public class expenses {
       ps.execute();
       rs = ps.getResultSet();
       while (rs.next()) {
-        transactions t = new transactions();
+        Transactions t = new Transactions();
         t.setTransaction_id(rs.getInt("transaction_id"));
         t.setSend_by(rs.getString("send_by"));
         t.setReason(rs.getString("reason"));
@@ -44,9 +44,9 @@ public class expenses {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(rs);
-      dataBase.close(ps);
-      dataBase.close(conn);
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
     }
     return "transactions";
   }
@@ -78,8 +78,8 @@ public class expenses {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(cs);
-      dataBase.close(conn);
+      DataBase.close(cs);
+      DataBase.close(conn);
     }
     return json.toString();
   }

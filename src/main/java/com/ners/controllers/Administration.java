@@ -1,9 +1,9 @@
 package com.ners.controllers;
 
-import com.ners.services.administration.applicationDelete;
-import com.ners.services.administration.applicationInsert;
-import com.ners.services.administration.applicationRead;
-import com.ners.services.administration.applicationUpdate;
+import com.ners.services.administration.ApplicationDelete;
+import com.ners.services.administration.ApplicationInsert;
+import com.ners.services.administration.ApplicationRead;
+import com.ners.services.administration.ApplicationUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class administration {
+public class Administration {
   @Autowired
-  applicationInsert applicationInsert;
+  ApplicationInsert applicationInsert;
   @Autowired
-  applicationUpdate applicationUpdate;
+  ApplicationUpdate applicationUpdate;
   @Autowired
-  applicationDelete applicationDelete;
+  ApplicationDelete applicationDelete;
   @Autowired
-  applicationRead applicationRead;
+  ApplicationRead applicationRead;
 
   @PostMapping("/application-insert")
   @ResponseBody

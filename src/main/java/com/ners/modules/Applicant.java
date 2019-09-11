@@ -3,7 +3,7 @@ package com.ners.modules;
 import lombok.Data;
 
 @Data
-public class applicant {
+public class Applicant {
   private Integer applicant_id;
   private String full_name;
   private String birth_date;

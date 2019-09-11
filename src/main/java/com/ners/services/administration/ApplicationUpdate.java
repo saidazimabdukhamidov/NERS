@@ -1,8 +1,8 @@
 package com.ners.services.administration;
 
 import com.google.gson.JsonObject;
-import com.ners.modules.applicant;
-import com.ners.utils.dataBase;
+import com.ners.modules.Applicant;
+import com.ners.utils.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Service
-public class applicationUpdate {
+public class ApplicationUpdate {
   @Autowired
   HikariDataSource hds;
 
   public String editApplication(HttpServletRequest request, Model model) {
-    ArrayList<applicant> applicants = new ArrayList<>();
+    ArrayList<Applicant> applicants = new ArrayList<>();
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -32,7 +32,7 @@ public class applicationUpdate {
       ps.execute();
       rs = ps.getResultSet();
       while (rs.next()) {
-        applicant app = new applicant();
+        Applicant app = new Applicant();
         app.setApplicant_id(rs.getInt("applicant_id"));
         app.setFull_name(rs.getString("full_name"));
         app.setBirth_date(rs.getString("birth_date"));
@@ -50,9 +50,9 @@ public class applicationUpdate {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(rs);
-      dataBase.close(ps);
-      dataBase.close(conn);
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
     }
     return "edit-application";
   }
@@ -93,8 +93,8 @@ public class applicationUpdate {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      dataBase.close(cs);
-      dataBase.close(conn);
+      DataBase.close(cs);
+      DataBase.close(conn);
     }
     return "registration-table";
   }

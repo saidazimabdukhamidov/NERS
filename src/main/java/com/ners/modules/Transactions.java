@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class transactions {
+public class Transactions {
   private Integer transaction_id;
   private String send_by;
   private String reason;
