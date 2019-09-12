@@ -28,19 +28,19 @@ public class ApplicationRead {
       ps.execute();
       rs = ps.getResultSet();
       while (rs.next()) {
-        Applicant app = new Applicant();
-        app.setApplicant_id(rs.getInt("applicant_id"));
-        app.setFull_name(rs.getString("full_name"));
-        app.setBirth_date(rs.getString("birth_date"));
-        app.setStudy_place(rs.getString("study_place"));
-        app.setSubject(rs.getString("subject"));
-        app.setChosen_time(rs.getString("chosen_time"));
-        app.setParent_time(rs.getString("parent_time"));
-        app.setAddress(rs.getString("address"));
-        app.setPhone_number(rs.getString("phone_number"));
-        app.setFound_where(rs.getString("found_where"));
-        app.setState(rs.getString("state"));
-        applicants.add(app);
+        Applicant a = new Applicant();
+        a.setApplicant_id(rs.getInt("applicant_id"));
+        a.setFull_name(rs.getString("full_name"));
+        a.setBirth_date(rs.getString("birth_date"));
+        a.setStudy_place(rs.getString("study_place"));
+        a.setSubject(rs.getString("subject"));
+        a.setChosen_time(rs.getString("chosen_time"));
+        a.setParent_time(rs.getString("parent_time"));
+        a.setAddress(rs.getString("address"));
+        a.setPhone_number(rs.getString("phone_number"));
+        a.setFound_where(rs.getString("found_where"));
+        a.setState(rs.getString("state"));
+        applicants.add(a);
       }
       model.addAttribute("applicants", applicants);
     } catch (Exception e) {
