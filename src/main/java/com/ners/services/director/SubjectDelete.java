@@ -19,7 +19,7 @@ public class SubjectDelete {
     CallableStatement cs = null;
     try {
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL }");
+      cs = conn.prepareCall("{CALL SUBJECT_DELETE_P(?)}");
       cs.setInt(1, Integer.parseInt(request.getParameter("subject_id")));
       cs.executeUpdate();
     } catch (Exception e) {

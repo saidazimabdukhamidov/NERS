@@ -31,7 +31,7 @@ public class StudentInsert {
       String teacher_name = request.getParameter("teacher_name");
       int subject_price = Integer.parseInt(request.getParameter("subject_price"));
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL }");
+      cs = conn.prepareCall("{CALL STUDENT_INSERT_P(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
       cs.setString(1, full_name);
       cs.setString(2, group_number);
       cs.setString(3, phone_number);

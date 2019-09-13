@@ -72,7 +72,7 @@ public class UserUpdate {
       String password = request.getParameter("password");
       int salary = Integer.parseInt(request.getParameter("salary"));
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL }");
+      cs = conn.prepareCall("{CALL USER_UPDATE_P(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
       cs.setString(1, full_name);
       cs.setInt(2, role_id);
       cs.setInt(3, absence);

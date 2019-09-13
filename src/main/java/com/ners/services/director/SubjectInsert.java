@@ -26,7 +26,7 @@ public class SubjectInsert {
       String level = request.getParameter("level");
       int price = Integer.parseInt(request.getParameter("price"));
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL }");
+      cs = conn.prepareCall("{CALL SUBJECT_INSER_P(?, ?, ?, ?)}");
       cs.setString(1, subject_name);
       cs.setString(2, subject_teacher);
       cs.setString(3, level);
