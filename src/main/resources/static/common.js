@@ -2,6 +2,10 @@ function loadForm(url) {
   $('#main').load(url);
 }
 
+function deleteApplication(id) {
+  $('#main').load('/application-delete?applicant_id=' + id);
+}
+
 function doSaveForm(event, url, formId) {
   event.preventDefault();
   $.ajax({

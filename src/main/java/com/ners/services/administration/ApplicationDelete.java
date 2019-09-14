@@ -19,7 +19,7 @@ public class ApplicationDelete {
     CallableStatement cs = null;
     try {
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL APPLICANT_DELETE_P(?)}");
+      cs = conn.prepareCall("{CALL NERS.APPLICANT_DELETE_P(?)}");
       cs.setInt(1, Integer.parseInt(request.getParameter("applicant_id")));
       cs.executeUpdate();
     } catch (Exception e) {
@@ -28,6 +28,6 @@ public class ApplicationDelete {
       DataBase.close(cs);
       DataBase.close(conn);
     }
-    return "registration-table";
+    return "redirect:/application-list";
   }
 }

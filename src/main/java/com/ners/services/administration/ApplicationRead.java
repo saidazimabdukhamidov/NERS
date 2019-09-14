@@ -35,7 +35,7 @@ public class ApplicationRead {
         a.setStudy_place(rs.getString("study_place"));
         a.setSubject(rs.getString("subject"));
         a.setChosen_time(rs.getString("chosen_time"));
-        a.setParent_time(rs.getString("parent_time"));
+        a.setParent_time(rs.getString("parent_name"));
         a.setAddress(rs.getString("address"));
         a.setPhone_number(rs.getString("phone_number"));
         a.setFound_where(rs.getString("found_where"));

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
@@ -16,65 +16,64 @@
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <img style="margin-right: 7px" src="../static/images/sign-out.png" height="40" width="40"/>
+  <img style="margin-right: 7px" src="/images/sign-out.png" height="40" width="40"/>
 </nav>
 <div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-1 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>Administratsiya <span class="sr-only">(current)</span>
-            </a>
-          </li>
-        </ul>
+  <div id="main">
+    <div class="row">
+      <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="home"></span>Administratsiya <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="col-md-11 mt-3 flex-column">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>FISH</th>
+            <th>Tug'ilgan sanasi</th>
+            <th>O'qish/Ish joyi</th>
+            <th>Tanlagan kurs</th>
+            <th>Tanlangan sana</th>
+            <th>Dars vaqti</th>
+            <th>Ota-Ona FISH</th>
+            <th>Adresi</th>
+            <th>Telefon raqami</th>
+            <th>Qayerdan esitganligi</th>
+            <th>Status</th>
+            <th>Operation</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="app : ${applicants}">
+            <td th:text="${app.full_name}"></td>
+            <td th:text="${app.birth_date}"></td>
+            <td th:text="${app.study_place}"></td>
+            <td th:text="${app.subject}"></td>
+            <td th:text="${app.chosen_time}"></td>
+            <td th:text="${app.parent_time}"></td>
+            <td th:text="${app.address}"></td>
+            <td th:text="${app.phone_number}"></td>
+            <td th:text="${app.found_where}"></td>
+            <td th:text="${app.state}"></td>
+            <td>
+              <button class="btn">
+                <img alt="Delete" src="/images/rubbish.png" height="18" width="18"/>
+              </button>
+              <button class="btn" data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|">
+                Delete
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-    </nav>
-    <div class="col-md-11 mt-3 flex-column">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>FISH</th>
-          <th>Tug'ilgan sanasi</th>
-          <th>O'qish/Ish joyi</th>
-          <th>Tanlagan kurs</th>
-          <th>Tanlangan sana</th>
-          <th>Dars vaqti</th>
-          <th>Ota-Ona FISH</th>
-          <th>Adresi</th>
-          <th>Telefon raqami</th>
-          <th>Qayerdan esitganligi</th>
-          <th>Status</th>
-          <th>Operation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="app : ${applicants}">
-          <td th:text="${app.full_name}"></td>
-          <td th:text="${app.birth_date}"></td>
-          <td th:text="${app.study_place}"></td>
-          <td th:text="${app.subject}"></td>
-          <td th:text="${app.chosen_time}"></td>
-          <td th:text="${app.parent_time}"></td>
-          <td th:text="${app.address}"></td>
-          <td th:text="${app.phone_number}"></td>
-          <td th:text="${app.found_where}"></td>
-          <td th:text="${app.state}"></td>
-          <td hidden th:text="${app.applicant_id}"></td>
-          <td></td>
-          <td style="padding-left: 22px;">
-            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-              <img alt="Edit" src="../static/images/pencil-edit.png" height="18" width="18"/>
-            </button>
-            <button type="button" class="btn">
-              <img alt="Delete" src="../static/images/rubbish.png" height="18" width="18"/>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
     </div>
   </div>
 </div>
@@ -139,8 +138,15 @@
     </div>
   </div>
 </div>-->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/common.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
