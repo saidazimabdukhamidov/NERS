@@ -78,28 +78,35 @@
       border-radius: .25rem;
       transition: all .1s ease-in-out;
     }
+ 
 
     .form-label-group input::-webkit-input-placeholder {
-      color: transparent;
-    }
-
-    .form-label-group input:-ms-input-placeholder {
-      color: transparent;
+      color: show;
     }
 
     .form-label-group input::-ms-input-placeholder {
-      color: transparent;
+      color: show;
+    }
+
+    .form-label-group input::-ms-input-placeholder {
+      color: show;
     }
 
     .form-label-group input::-moz-placeholder {
-      color: transparent;
+      color: show;
     }
 
     .form-label-group input::placeholder {
-      color: transparent;
+      color: show;
     }
 
-    .form-label-group input:not(:placeholder-shown) {
+    .form-label-group input::not(:lable-shown){
+
+    }
+
+
+
+  /*  .form-label-group input:not(:placeholder-shown) {
       padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
       padding-bottom: calc(var(--input-padding-y) / 3);
     }
@@ -109,7 +116,7 @@
       padding-bottom: calc(var(--input-padding-y) / 3);
       font-size: 12px;
       color: #777;
-    }
+    }*/
 
     .btn-google {
       color: white;
@@ -152,18 +159,19 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
+      <div class="card card-signin" style="margin-top: 10em;">
         <div class="card-body">
+          <img style="width: 65px; height: 65px; margin-left: 150px; margin-bottom: 10px;" src="C:\Users\Mukarram\Downloads\user.png">
           <h5 class="card-title text-center" style=""><b>Tizimga kirish</b></h5>
           <form class="form-signin">
             <div class="form-label-group">
               <input type="text" id="username" class="form-control" placeholder="Loginni kiriting" required autofocus>
-              <label for="username">Login</label>
+              <label for="username"></label>
             </div>
 
             <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-              <label for="inputPassword">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Parolni kiriting" required>
+              <label for="inputPassword"></label>
             </div>
             <button class="btn btn-lg btn-primary  btn-block text-uppercase" type="submit">Kirish</button>
           </form>
