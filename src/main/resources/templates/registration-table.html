@@ -56,18 +56,21 @@
             <td th:text="${app.birth_date}"></td>
             <td th:text="${app.study_place}"></td>
             <td th:text="${app.subject}"></td>
+            <td th:text="${app.start_day}"></td>
             <td th:text="${app.chosen_time}"></td>
             <td th:text="${app.parent_time}"></td>
             <td th:text="${app.address}"></td>
             <td th:text="${app.phone_number}"></td>
             <td th:text="${app.found_where}"></td>
             <td th:text="${app.state}"></td>
+            <td></td>
             <td>
-              <button class="btn">
-                <img alt="Delete" src="/images/rubbish.png" height="18" width="18"/>
+              <button class="btn btn-outline-secondary btn-sm">
+                O'zgartirmoq
+<!--                <img alt="Delete" src="/images/rubbish.png" height="18" width="18"/>-->
               </button>
-              <button class="btn" data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|">
-                Delete
+              <button class="btn btn-sm" data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|">
+                O'chirmoq
               </button>
             </td>
           </tr>

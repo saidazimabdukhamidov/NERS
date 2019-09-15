@@ -16,9 +16,70 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 @Service
-public class SubjectUpdate {
+public class SubjectCrud {
   @Autowired
   HikariDataSource hds;
+
+  public String insertSubject(HttpServletRequest request) {
+    JsonObject json = new JsonObject();
+    Connection conn = null;
+    CallableStatement cs = null;
+    try {
+      int subject_id = 0;
+      String subject_name = request.getParameter("subject_name");
+      String subject_teacher = request.getParameter("subject_teacher");
+      String level = request.getParameter("level");
+      int price = Integer.parseInt(request.getParameter("price"));
+      conn = hds.getConnection();
+      cs = conn.prepareCall("{CALL SUBJECT_INSER_P(?, ?, ?, ?)}");
+      cs.setString(1, subject_name);
+      cs.setString(2, subject_teacher);
+      cs.setString(3, level);
+      cs.setInt(4, price);
+      int result = cs.executeUpdate();
+      if (result > 0) {
+        json.addProperty("location", "/subjects-table");
+      } else {
+        json.addProperty("msg", "Ошибка!");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(cs);
+      DataBase.close(conn);
+    }
+    return "subjects-table";
+  }
+
+  public String readSubject(Model model) {
+    ArrayList<Subjects> subject = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.MAIN_SUBJECTS");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Subjects s = new Subjects();
+        s.setSubject_id(rs.getInt("subject_id"));
+        s.setSubject_name(rs.getString("subject_name"));
+        s.setSubject_teacher(rs.getString("subject_teacher"));
+        s.setLevel(rs.getString("level"));
+        s.setPrice(rs.getInt("price"));
+        subject.add(s);
+      }
+      model.addAttribute("subjects", subject);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    return "subjects-table";
+  }
 
   public String editSubject(Model model) {
     ArrayList<Subjects> subject = new ArrayList<>();
@@ -70,6 +131,23 @@ public class SubjectUpdate {
       } else {
         json.addProperty("msg", "Ошибка!");
       }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(cs);
+      DataBase.close(conn);
+    }
+    return "subjects-table";
+  }
+
+  public String deleteSubject(HttpServletRequest request) {
+    Connection conn = null;
+    CallableStatement cs = null;
+    try {
+      conn = hds.getConnection();
+      cs = conn.prepareCall("{CALL SUBJECT_DELETE_P(?)}");
+      cs.setInt(1, Integer.parseInt(request.getParameter("subject_id")));
+      cs.executeUpdate();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
