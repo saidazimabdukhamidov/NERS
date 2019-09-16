@@ -16,7 +16,7 @@ public class Users {
   private Integer dept;
   private String birth_date;
   private String phone_number;
-  private String login;
+  private String username;
   private String password;
   private Integer salary;
 }

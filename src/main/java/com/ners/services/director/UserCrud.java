@@ -83,7 +83,7 @@ public class UserCrud {
         u.setDept(rs.getInt("dept"));
         u.setBirth_date(rs.getString("birth_date"));
         u.setPhone_number(rs.getString("phone_number"));
-        u.setLogin(rs.getString("login"));
+        u.setUsername(rs.getString("login"));
         u.setPassword(rs.getString("password"));
         u.setSalary(rs.getInt("salary"));
         user.add(u);
@@ -119,7 +119,7 @@ public class UserCrud {
         u.setDept(rs.getInt("dept"));
         u.setBirth_date(rs.getString("birth_date"));
         u.setPhone_number(rs.getString("phone_number"));
-        u.setLogin(rs.getString("login"));
+        u.setUsername(rs.getString("login"));
         u.setPassword(rs.getString("password"));
         u.setSalary(rs.getInt("salary"));
         user.add(u);

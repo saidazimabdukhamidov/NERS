@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <title>Xush kelibsiz!</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
      <span class="navbar-toggler-icon"></span>
    </button> -->
   <button class="btn btn-outline-light btn-sm">
-    <img style="margin-right: 7px" src="../static/images/sign-out.png" height="35" width="35"/>
+    <img style="margin-right: 7px" src="/assets/images/sign-out.png" height="35" width="35"/>
   </button>
 </nav>
 <div class="container-fluid">
@@ -35,10 +36,9 @@
         </div>
       </nav>
       <div class="col-md-10 mt-3 flex-column">
-        <a onclick="loadForm(('/application-insert'))" type="button" class="btn btn-outline-primary btn-sm"
-           style="margin-bottom: 10px;" data-toggle="modal"
-           data-target="#addModal">Ariza qo'shish
-        </a>
+        <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary btn-sm"
+           style="margin-bottom: 10px;" >Ariza qo'shish
+        </button>
         <table class="table table-hover">
           <thead>
           <tr style="color: #5f6371;">
@@ -67,19 +67,18 @@
             <td th:text="${app.phone_number}"></td>
             <td th:text="${app.found_where}"></td>
             <td th:text="${app.state}"></td>
-            <td></td>
+            <td hidden th:text="${app.applicant_id}"></td>
             <td style="padding-left: 23px;">
-              <!--  <img alt="Edit" src="C:/Users/Mukarram/Downloads/edit.png" height="18" width="18"/>
-               <img data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|" alt="Edit" src="C:/Users/Mukarram/Downloads/trash.png" height="18" width="18"/> -->
               <div class="row">
                 <div>
                   <button class="btn btn-outline-light" data-toggle="modal" data-target="#editModal"
                           th:onclick="|updateApplication(${app.applicant_id})|">
-                    <img alt="Edit" src="../static/images/edit.png" height="18" width="18"/>
+                    <img alt="Edit" src="/assets/images/edit.png" height="18" width="18"/>
                   </button>
                   <button type="button" th:onclick="|deleteApplication(${app.applicant_id})|"
-                          class="btn btn-outline-light"><img alt="Delete" src="../static/images/trash.png" height="18"
-                                                             width="18"/></button>1
+                          class="btn btn-outline-light"><img alt="Delete" src="/assets/images/trash.png"
+                                                             height="18"
+                                                             width="18"/></button>
                 </div>
               </div>
             </td>
@@ -90,7 +89,7 @@
     </div>
   </div>
 </div>
-<!-- Modal for Editing -->
+<!--&lt;!&ndash; Modal for Editing &ndash;&gt;-->
 <!--<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">-->
 <!--  <div class="modal-dialog" role="document">-->
 <!--    <div class="modal-content">-->
@@ -214,16 +213,17 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-<!--</div>-->
-<script src="/common.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script th:src="@{/assets/js/common.js}"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
+<!--        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
+<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+<!--        crossorigin="anonymous"></script>-->
 </body>
 </html>

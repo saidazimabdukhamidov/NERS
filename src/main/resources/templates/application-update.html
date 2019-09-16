@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Anketa to'ldirish</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/master.css">
+</head>
+<body>
+<div class="">
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">-->
+<!--    <a class="navbar-brand" href="#" style="color: #5f6371; font-size: 24px; font-weight: bold">N E R S</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
+<!--            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--  </nav>-->
+</div>
+
+<div class="container-fluid ">
+  <div class="row">
+    <div class="container-fluid mt-3 " style="width: 550px;">
+      <form id="application-update" th:each="app : ${applicants}">
+        <div class="form-group" >
+          <label for="app_id">Ariza ID:</label>
+          <input th:value="${app.applicant_id}" type="text" class="form-control" id="app_id" name="applicant_id">
+        </div>
+        <div class="form-group">
+          <label for="fname">Ism-Familiyasi:</label>
+          <input th:value="${app.full_name}" type="text" class="form-control" id="fname" name="full_name">
+        </div>
+        <div class="form-group">
+          <label for="lname">Tug'ilgan sanasi:</label>
+          <input th:value="${app.birth_date}" type="text" class="form-control" id="lname" name="birth_date">
+        </div>
+        <div class="form-group">
+          <label for="mname">O'qish/Ish joyi:</label>
+          <input th:value="${app.study_place}" type="text" class="form-control" id="mname" name="study_place">
+        </div>
+        <div class="form-group">
+          <label for="day">Tanlangan kurs:</label>
+          <input th:value="${app.subject}" type="text" class="form-control" id="day" name="subject">
+        </div>
+        <div class="form-group">
+          <label for="ishjoyi">Dars vaqti:</label>
+          <input th:value="${app.chosen_time}" type="text" class="form-control" id="ishjoyi" name="chosen_time">
+        </div>
+        <div class="form-group">
+          <label for="togarak">Ota-Onasining ismi:</label>
+          <input th:value="${app.parent_name}" type="text" class="form-control" id="togarak" name="parent_name">
+        </div>
+        <div class="form-group">
+          <label for="time">Yashash manzili:</label>
+          <input th:value="${app.address}" type="text" class="form-control" id="time" name="address">
+        </div>
+        <div class="form-group">
+          <label for="parent">Telefon raqami:</label>
+          <input th:value="${app.phone_number}" type="text" class="form-control" id="parent" name="phone_number">
+        </div>
+        <div class="form-group">
+          <label for="address">Qayerdan eshitganligi:</label>
+          <input th:value="${app.found_where}" type="text" class="form-control" id="address" name="found_where">
+        </div>
+        <div class="form-group">
+          <label for="phone">Status:</label>
+          <input th:value="${app.state}" type="text" class="form-control" id="phone" name="state">
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-sm btn-light">Bekor qilish</button>
+          <button onclick="doSaveForm(event, '/application-update', 'application-update')" type="submit" class="btn btn-sm btn-primary justify-content-end btn-cancel"
+                  style="margin-left: 90px;">Saqlash
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/jquery-3.4.1.min.js"></script>
+<script src="/assets/js/common.js"></script>
+</body>
+</html>

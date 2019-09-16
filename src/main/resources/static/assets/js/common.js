@@ -1,9 +1,9 @@
 function loadForm(url) {
-  $('#main').load(url);
+  window.location = url;
 }
 
 function updateApplication(id) {
-  $('#main').load('/application-update?applicant_id=' + id);
+  window.location = 'application-update?applicant_id=' + id;
 }
 
 function deleteApplication(id) {
@@ -19,7 +19,7 @@ function doSaveForm(event, url, formId) {
     dataType: 'json',
     success: function (json) {
       if (json.location != '' && json.location != 'undefined') {
-        $('#main').load(json.location);
+        document.location = json.location;
       } else {
         alert(json.msg)
       }

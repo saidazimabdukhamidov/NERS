@@ -49,9 +49,9 @@ public class ApplicationCrud {
       cs.setString(10, state);
       int result = cs.executeUpdate();
       if (result > 0) {
-        json.addProperty("location", "/registration-table");
+        json.addProperty("location", "/application-list");
       } else {
-        json.addProperty("msg", "Ошибка!");
+        json.addProperty("msg", "Xato!");
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -59,7 +59,7 @@ public class ApplicationCrud {
       DataBase.close(cs);
       DataBase.close(conn);
     }
-    return "registration-table";
+    return json.toString();
   }
 
   public String readApplication(Model model) {
@@ -105,8 +105,9 @@ public class ApplicationCrud {
     ResultSet rs = null;
     try {
       conn = hds.getConnection();
+      int applicant_id = Integer.parseInt(request.getParameter("applicant_id"));
       ps = conn.prepareStatement("SELECT * FROM NERS.APPLICANT WHERE APPLICANT_ID = ?");
-      ps.setInt(1, Integer.parseInt(request.getParameter("applicant_id")));
+      ps.setInt(1, applicant_id);
       ps.execute();
       rs = ps.getResultSet();
       while (rs.next()) {
@@ -132,7 +133,7 @@ public class ApplicationCrud {
       DataBase.close(ps);
       DataBase.close(conn);
     }
-    return "edit-application";
+    return "application-update";
   }
 
   public String updateApplication(HttpServletRequest request) {
@@ -150,8 +151,9 @@ public class ApplicationCrud {
       String address = request.getParameter("address");
       String phone_number = request.getParameter("phone_number");
       String found_where = request.getParameter("found_where");
+      String state = request.getParameter("state");
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL NERS.APPLICANT_UPDATE_P(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+      cs = conn.prepareCall("{CALL NERS.APPLICANT_UPDATE_P(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
       cs.setInt(1, applicant_id);
       cs.setString(2, full_name);
       cs.setString(3, birth_date);
@@ -162,11 +164,12 @@ public class ApplicationCrud {
       cs.setString(8, address);
       cs.setString(9, phone_number);
       cs.setString(10, found_where);
+      cs.setString(11, state);
       int result = cs.executeUpdate();
       if (result > 0) {
-        json.addProperty("location", "/registration-table");
+        json.addProperty("location", "/application-list");
       } else {
-        json.addProperty("msg", "Ошибка!");
+        json.addProperty("msg", "Xato!");
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -174,7 +177,7 @@ public class ApplicationCrud {
       DataBase.close(cs);
       DataBase.close(conn);
     }
-    return "registration-table";
+    return json.toString();
   }
 
   public String deleteApplication(HttpServletRequest request) {

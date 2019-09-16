@@ -21,13 +21,18 @@ public class Administration {
     return applicationCrud.insertApplication(request);
   }
 
-  @PostMapping("/application-update")
-  @ResponseBody
+  @GetMapping("/application-insert")
+  public String addApplication(){
+    return "application-insert";
+  }
+
+  @GetMapping("/application-update")
   public String editApplication(HttpServletRequest request, Model model) {
     return applicationCrud.editApplication(request, model);
   }
 
-  @GetMapping("/application-update")
+  @PostMapping("/application-update")
+  @ResponseBody
   public String updateApplication(HttpServletRequest request) {
     return applicationCrud.updateApplication(request);
   }
