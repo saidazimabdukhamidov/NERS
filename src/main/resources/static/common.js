@@ -2,6 +2,10 @@ function loadForm(url) {
   $('#main').load(url);
 }
 
+function updateApplication(id) {
+  $('#main').load('/application-update?applicant_id=' + id);
+}
+
 function deleteApplication(id) {
   $('#main').load('/application-delete?applicant_id=' + id);
 }

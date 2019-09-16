@@ -11,7 +11,7 @@ public class Users {
   private Integer user_id;
   private String full_name;
   private Integer role_id;
-  private Integer Absence;
+  private Integer absence;
   private String group_id;
   private Integer dept;
   private String birth_date;

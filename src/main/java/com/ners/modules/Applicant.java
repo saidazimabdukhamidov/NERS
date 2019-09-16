@@ -14,8 +14,7 @@ public class Applicant {
   private String study_place;
   private String subject;
   private String chosen_time;
-  private String start_day;
-  private String parent_time;
+  private String parent_name;
   private String address;
   private String phone_number;
   private String found_where;

@@ -12,13 +12,13 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
   <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 24px; color: #5f6371">N E R S</a>
- <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-<button class="btn btn-outline-light btn-sm">
- <img style="margin-right: 7px" src="../static/images/sign-out.png" height="35" width="35"/>
-</button>
+  <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button> -->
+  <button class="btn btn-outline-light btn-sm">
+    <img style="margin-right: 7px" src="../static/images/sign-out.png" height="35" width="35"/>
+  </button>
 </nav>
 <div class="container-fluid">
   <div id="main">
@@ -35,7 +35,10 @@
         </div>
       </nav>
       <div class="col-md-10 mt-3 flex-column">
-        <button type="button" class="btn btn-outline-primary btn-sm" style="margin-bottom: 10px;" data-toggle="modal" data-target="#addModal">Add person</button>
+        <a onclick="loadForm(('/application-insert'))" type="button" class="btn btn-outline-primary btn-sm"
+           style="margin-bottom: 10px;" data-toggle="modal"
+           data-target="#addModal">Ariza qo'shish
+        </a>
         <table class="table table-hover">
           <thead>
           <tr style="color: #5f6371;">
@@ -43,16 +46,13 @@
             <th>Tug'ilgan sanasi</th>
             <th>O'qish/Ish joyi</th>
             <th>Tanlagan kurs</th>
-            <th>Tanlangan sana</th>
             <th>Dars vaqti</th>
             <th>Ota-Ona FISH</th>
-            <th>Adresi</th>
+            <th>Manzili</th>
             <th>Telefon raqami</th>
             <th>Qayerdan esitganligi</th>
             <th>Status</th>
-            
-            <th>Operation</th>
-
+            <th>Amallar</th>
           </tr>
           </thead>
           <tbody>
@@ -62,20 +62,25 @@
             <td th:text="${app.study_place}"></td>
             <td th:text="${app.subject}"></td>
             <td th:text="${app.chosen_time}"></td>
-            <td th:text="${app.parent_time}"></td>
+            <td th:text="${app.parent_name}"></td>
             <td th:text="${app.address}"></td>
             <td th:text="${app.phone_number}"></td>
             <td th:text="${app.found_where}"></td>
             <td th:text="${app.state}"></td>
             <td></td>
             <td style="padding-left: 23px;">
-             <!--  <img alt="Edit" src="C:/Users/Mukarram/Downloads/edit.png" height="18" width="18"/>
-              <img data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|" alt="Edit" src="C:/Users/Mukarram/Downloads/trash.png" height="18" width="18"/> -->
-             <div class="row"> 
-              <div><button class="btn btn-outline-light" data-toggle="modal" data-target="#editModal" th:onclick="|deleteApplication(${app.applicant_id})|">
-                <img alt="Edit" src="../static/images/edit.png" height="18" width="18"/>
-              </button>
-              <button class="btn btn-outline-light"><img alt="Delete" src="../static/images/trash.png" height="18" width="18"/></button>
+              <!--  <img alt="Edit" src="C:/Users/Mukarram/Downloads/edit.png" height="18" width="18"/>
+               <img data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|" alt="Edit" src="C:/Users/Mukarram/Downloads/trash.png" height="18" width="18"/> -->
+              <div class="row">
+                <div>
+                  <button class="btn btn-outline-light" data-toggle="modal" data-target="#editModal"
+                          th:onclick="|updateApplication(${app.applicant_id})|">
+                    <img alt="Edit" src="../static/images/edit.png" height="18" width="18"/>
+                  </button>
+                  <button type="button" th:onclick="|deleteApplication(${app.applicant_id})|"
+                          class="btn btn-outline-light"><img alt="Delete" src="../static/images/trash.png" height="18"
+                                                             width="18"/></button>1
+                </div>
               </div>
             </td>
           </tr>
@@ -85,129 +90,131 @@
     </div>
   </div>
 </div>
- <!-- Modal for Editing -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">O'quvchi ma'lumotlarini o'zgartirish</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" >
-          <div class="form-group">
-            <label for="fullname">Ism-Familiyasi:</label>
-            <input th:text="${app.full_name}" type="text" class="form-control" id="fullname" name="full_name">
-          </div>
-          <div class="form-group">
-            <label for="bday">Tug'ilgan sanasi:</label>
-            <input th:text="${app.birth_date}" type="text" class="form-control" id="bday" name="birth_date">
-          </div>
-          <div class="form-group">
-            <label for="stydyplace">O'qish/Ish joyi:</label>
-            <input th:text="${app.study_place}" type="text" class="form-control" id="stydyplace" name="study_place">
-          </div>
-          <div class="form-group">
-            <label for="course">Tanlangan kurs:</label>
-            <input th:text="${app.subject}" type="text" class="form-control" id="course" name="subject">
-          </div>
-          <div class="form-group">
-            <label for="time">Dars vaqti:</label>
-            <input th:text="${app.chosen_time}" type="text" class="form-control" id="time" name="class_time">
-          </div>
-          <div class="form-group">
-            <label for="togarak">Ota-Onasining ismi:</label>
-            <input th:text="${app.parent_time}" type="text" class="form-control" id="togarak" name="parent_name">
-          </div>
-          <div class="form-group">
-            <label for="address">Yashash manzili:</label>
-            <input th:text="${app.address}" type="text" class="form-control" id="address" name="address">
-          </div>
-          <div class="form-group">
-            <label for="parent">Telefon raqami:</label>
-            <input th:text="${app.phone_number}" type="text" class="form-control" id="parent" name="phone_number">
-          </div>
-          <div class="form-group">
-            <label for="hearfrom">Qayerdan eshitganligi:</label>
-            <input th:text="${app.found_where}" type="text" class="form-control" id="hearfrom" name="found_where">
-          </div>
-          <div class="form-group">
-            <label for="phone">Status:</label>
-            <input th:text="${app.state}" type="text" class="form-control" id="phone" name="state">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" style="margin-right: 17em;" data-dismiss="modal">Bekor qilish</button>
-        <button type="button" class="btn btn-primary">Saqlash</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Modal for Editing -->
+<!--<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="editModalLabel">O'quvchi ma'lumotlarini o'zgartirish</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form action="">-->
+<!--          <div class="form-group">-->
+<!--            <label for="fullname">Ism-Familiyasi:</label>-->
+<!--            <input th:text="${app.full_name}" type="text" class="form-control" id="fullname" name="full_name">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="bday">Tug'ilgan sanasi:</label>-->
+<!--            <input th:text="${app.birth_date}" type="text" class="form-control" id="bday" name="birth_date">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="stydyplace">O'qish/Ish joyi:</label>-->
+<!--            <input th:text="${app.study_place}" type="text" class="form-control" id="stydyplace" name="study_place">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="course">Tanlangan kurs:</label>-->
+<!--            <input th:text="${app.subject}" type="text" class="form-control" id="course" name="subject">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="time">Dars vaqti:</label>-->
+<!--            <input th:text="${app.chosen_time}" type="text" class="form-control" id="time" name="class_time">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="togarak">Ota-Onasining ismi:</label>-->
+<!--            <input th:text="${app.parent_name}" type="text" class="form-control" id="togarak" name="parent_name">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="address">Yashash manzili:</label>-->
+<!--            <input th:text="${app.address}" type="text" class="form-control" id="address" name="address">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="parent">Telefon raqami:</label>-->
+<!--            <input th:text="${app.phone_number}" type="text" class="form-control" id="parent" name="phone_number">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="hearfrom">Qayerdan eshitganligi:</label>-->
+<!--            <input th:text="${app.found_where}" type="text" class="form-control" id="hearfrom" name="found_where">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="phone">Status:</label>-->
+<!--            <input th:text="${app.state}" type="text" class="form-control" id="phone" name="state">-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-light" style="margin-right: 17em;" data-dismiss="modal">Bekor qilish-->
+<!--        </button>-->
+<!--        <button type="button" class="btn btn-primary">Saqlash</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
- <!-- Modal for Adding -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">O'quvchi ma'lumotlarini kiritish</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" >
-          <div class="form-group">
-            <label for="fullname">Ism-Familiyasi:</label>
-            <input th:text="${app.full_name}" type="text" class="form-control" id="fullname" name="full_name">
-          </div>
-          <div class="form-group">
-            <label for="bday">Tug'ilgan sanasi:</label>
-            <input th:text="${app.birth_date}" type="text" class="form-control" id="bday" name="birth_date">
-          </div>
-          <div class="form-group">
-            <label for="stydyplace">O'qish/Ish joyi:</label>
-            <input th:text="${app.study_place}" type="text" class="form-control" id="stydyplace" name="study_place">
-          </div>
-          <div class="form-group">
-            <label for="course">Tanlangan kurs:</label>
-            <input th:text="${app.subject}" type="text" class="form-control" id="course" name="subject">
-          </div>
-          <div class="form-group">
-            <label for="time">Dars vaqti:</label>
-            <input th:text="${app.chosen_time}" type="text" class="form-control" id="time" name="class_time">
-          </div>
-          <div class="form-group">
-            <label for="togarak">Ota-Onasining ismi:</label>
-            <input th:text="${app.parent_time}" type="text" class="form-control" id="togarak" name="parent_name">
-          </div>
-          <div class="form-group">
-            <label for="address">Yashash manzili:</label>
-            <input th:text="${app.address}" type="text" class="form-control" id="address" name="address">
-          </div>
-          <div class="form-group">
-            <label for="parent">Telefon raqami:</label>
-            <input th:text="${app.phone_number}" type="text" class="form-control" id="parent" name="phone_number">
-          </div>
-          <div class="form-group">
-            <label for="hearfrom">Qayerdan eshitganligi:</label>
-            <input th:text="${app.found_where}" type="text" class="form-control" id="hearfrom" name="found_where">
-          </div>
-          <div class="form-group">
-            <label for="phone">Status:</label>
-            <input th:text="${app.state}" type="text" class="form-control" id="phone" name="state">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" style="margin-right: 17em;" data-dismiss="modal">Bekor qilish</button>
-        <button type="button" class="btn btn-primary">Saqlash</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!--&lt;!&ndash; Modal for Adding &ndash;&gt;-->
+<!--<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="addModalLabel">O'quvchi ma'lumotlarini kiritish</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form action="">-->
+<!--          <div class="form-group">-->
+<!--            <label for="fullname">Ism-Familiyasi:</label>-->
+<!--            <input th:text="${app.full_name}" type="text" class="form-control" id="fullname" name="full_name">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="bday">Tug'ilgan sanasi:</label>-->
+<!--            <input th:text="${app.birth_date}" type="text" class="form-control" id="bday" name="birth_date">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="stydyplace">O'qish/Ish joyi:</label>-->
+<!--            <input th:text="${app.study_place}" type="text" class="form-control" id="stydyplace" name="study_place">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="course">Tanlangan kurs:</label>-->
+<!--            <input th:text="${app.subject}" type="text" class="form-control" id="course" name="subject">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="time">Dars vaqti:</label>-->
+<!--            <input th:text="${app.chosen_time}" type="text" class="form-control" id="time" name="class_time">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="togarak">Ota-Onasining ismi:</label>-->
+<!--            <input th:text="${app.parent_name}" type="text" class="form-control" id="togarak" name="parent_name">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="address">Yashash manzili:</label>-->
+<!--            <input th:text="${app.address}" type="text" class="form-control" id="address" name="address">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="parent">Telefon raqami:</label>-->
+<!--            <input th:text="${app.phone_number}" type="text" class="form-control" id="parent" name="phone_number">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="hearfrom">Qayerdan eshitganligi:</label>-->
+<!--            <input th:text="${app.found_where}" type="text" class="form-control" id="hearfrom" name="found_where">-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="phone">Status:</label>-->
+<!--            <input th:text="${app.state}" type="text" class="form-control" id="phone" name="state">-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-light" style="margin-right: 17em;" data-dismiss="modal">Bekor qilish-->
+<!--        </button>-->
+<!--        <button type="button" class="btn btn-primary">Saqlash</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <script src="/common.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

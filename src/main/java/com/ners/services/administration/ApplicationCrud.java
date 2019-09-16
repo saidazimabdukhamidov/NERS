@@ -29,7 +29,7 @@ public class ApplicationCrud {
       String birth_date = request.getParameter("birth_date");
       String study_place = request.getParameter("study_place");
       String subject = request.getParameter("subject");
-      String class_time = request.getParameter("class_time");
+      String chosen_time = request.getParameter("chosen_time");
       String parent_name = request.getParameter("parent_name");
       String address = request.getParameter("address");
       String phone_number = request.getParameter("phone_number");
@@ -41,7 +41,7 @@ public class ApplicationCrud {
       cs.setString(2, birth_date);
       cs.setString(3, study_place);
       cs.setString(4, subject);
-      cs.setString(5, class_time);
+      cs.setString(5, chosen_time);
       cs.setString(6, parent_name);
       cs.setString(7, address);
       cs.setString(8, phone_number);
@@ -80,8 +80,7 @@ public class ApplicationCrud {
         a.setStudy_place(rs.getString("study_place"));
         a.setSubject(rs.getString("subject"));
         a.setChosen_time(rs.getString("chosen_time"));
-        a.setStart_day(rs.getString("start_day"));
-        a.setParent_time(rs.getString("parent_name"));
+        a.setParent_name(rs.getString("parent_name"));
         a.setAddress(rs.getString("address"));
         a.setPhone_number(rs.getString("phone_number"));
         a.setFound_where(rs.getString("found_where"));
@@ -118,7 +117,7 @@ public class ApplicationCrud {
         a.setStudy_place(rs.getString("study_place"));
         a.setSubject(rs.getString("subject"));
         a.setChosen_time(rs.getString("chosen_time"));
-        a.setParent_time(rs.getString("parent_name"));
+        a.setParent_name(rs.getString("parent_name"));
         a.setAddress(rs.getString("address"));
         a.setPhone_number(rs.getString("phone_number"));
         a.setFound_where(rs.getString("found_where"));
