@@ -5,30 +5,35 @@
   <meta charset="utf-8">
   <title>Xush kelibsiz!</title>
 
-<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+  <!--        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-  <a class="navbar-brand" href="#" style="font-weight: bold; font-size: 24px; color: #5f6371">N E R S</a>
-  <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
-   </button> -->
-  <button class="btn btn-outline-light btn-sm">
-    <img style="margin-right: 7px" src="/assets/images/sign-out.png" height="35" width="35"/>
-  </button>
-</nav>
+<div class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between shadow p-1 mb-5">
+    <a class="navbar-brand" href="#" style="margin-left: 1em; font-weight: bold; font-size: 24px; color: #3f51b5">N E R
+      S</a>
+    <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button> -->
+    <a href="/">
+      <button class="btn btn-outline-light btn-sm">
+        <img style="margin-right: 7px" src="/assets/images/sign-out.png" height="25" width="25"/>
+      </button>
+    </a>
+  </nav>
+</div>
 <div class="container-fluid">
   <div id="main">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <nav class="col-md-2 d-none d-md-block bg-white sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" style="color: #5a6268; font-weight: bold;" href="#">
                 <span data-feather="home"></span>Administratsiya<span class="sr-only">(current)</span>
               </a>
             </li>
@@ -37,9 +42,9 @@
       </nav>
       <div class="col-md-10 mt-3 flex-column">
         <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary btn-sm"
-           style="margin-bottom: 10px;" >Ariza qo'shish
+                style="margin-bottom: 10px;">Ariza qo'shish
         </button>
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover">
           <thead>
           <tr style="color: #5f6371;">
             <th>FISH</th>

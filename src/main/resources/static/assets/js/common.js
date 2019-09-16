@@ -7,7 +7,7 @@ function updateApplication(id) {
 }
 
 function deleteApplication(id) {
-  $('#main').load('/application-delete?applicant_id=' + id);
+  document.location ='application-delete?applicant_id=' + id;
 }
 
 function doSaveForm(event, url, formId) {
