@@ -17,7 +17,7 @@
     <span class="navbar-toggler-icon"></span>
   </button> -->
 <button class="btn btn-outline-light btn-sm">
- <img style="margin-right: 7px" src="C:\Users\Mukarram\Downloads\exit.png" height="35" width="35"/>
+ <img style="margin-right: 7px" src="../static/images/sign-out.png" height="35" width="35"/>
 </button>
 </nav>
 <div class="container-fluid">
@@ -28,7 +28,7 @@
           <ul class="nav flex-column">
             <li class="nav-item">
               <a class="nav-link active" href="#">
-                <span data-feather="home"></span>Administratsiya <span class="sr-only">(current)</span>
+                <span data-feather="home"></span>Administratsiya<span class="sr-only">(current)</span>
               </a>
             </li>
           </ul>
@@ -38,7 +38,7 @@
         <button type="button" class="btn btn-outline-primary btn-sm" style="margin-bottom: 10px;" data-toggle="modal" data-target="#addModal">Add person</button>
         <table class="table table-hover">
           <thead>
-          <tr>
+          <tr style="color: #5f6371;">
             <th>FISH</th>
             <th>Tug'ilgan sanasi</th>
             <th>O'qish/Ish joyi</th>
@@ -72,10 +72,10 @@
              <!--  <img alt="Edit" src="C:/Users/Mukarram/Downloads/edit.png" height="18" width="18"/>
               <img data-toggle="modal" data-target="#exampleModal" th:onclick="|deleteApplication(${app.applicant_id})|" alt="Edit" src="C:/Users/Mukarram/Downloads/trash.png" height="18" width="18"/> -->
              <div class="row"> 
-              <div><button class="btn btn-outline-light" data-toggle="modal" data-target="#editModal" h:onclick="|deleteApplication(${app.applicant_id})|">
-                <img alt="Edit" src="C:/Users/Mukarram/Downloads/edit.png" height="18" width="18"/>
+              <div><button class="btn btn-outline-light" data-toggle="modal" data-target="#editModal" th:onclick="|deleteApplication(${app.applicant_id})|">
+                <img alt="Edit" src="../static/images/edit.png" height="18" width="18"/>
               </button>
-              <button class="btn btn-outline-light"><img alt="Delete" src="C:/Users/Mukarram/Downloads/trash.png" height="18" width="18"/></button>
+              <button class="btn btn-outline-light"><img alt="Delete" src="../static/images/trash.png" height="18" width="18"/></button>
               </div>
             </td>
           </tr>
