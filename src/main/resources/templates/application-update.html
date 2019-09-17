@@ -2,21 +2,12 @@
 <html lang="en" dir="ltr" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
-  <title>Anketa to'ldirish</title>
+  <title>Ariza o'zgartirish</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/master.css">
 </head>
 <body>
-<div class="">
-<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">-->
-<!--    <a class="navbar-brand" href="#" style="color: #5f6371; font-size: 24px; font-weight: bold">N E R S</a>-->
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
-<!--            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--  </nav>-->
-</div>
 
 <div class="container-fluid ">
   <div class="row">
@@ -67,7 +58,7 @@
           <input th:value="${app.state}" type="text" class="form-control" id="phone" name="state">
         </div>
         <div class="d-flex justify-content-between">
-          <button class="btn btn-sm btn-light">Bekor qilish</button>
+          <input type="button" value="Bekor qilish" onclick="history.back()" class="btn btn-sm btn-light">
           <button onclick="doSaveForm(event, '/application-update', 'application-update')" type="submit" class="btn btn-sm btn-primary justify-content-end btn-cancel"
                   style="margin-left: 90px;">Saqlash
           </button>

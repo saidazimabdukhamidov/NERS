@@ -68,7 +68,6 @@
       display: block;
       width: 100%;
       margin-bottom: 0;
-      /* Override default `<label>` margin */
       line-height: 1.5;
       color: #495057;
       border: 1px solid transparent;
@@ -101,33 +100,6 @@
 
     }
 
-
-
-  /*  .form-label-group input:not(:placeholder-shown) {
-      padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-      padding-bottom: calc(var(--input-padding-y) / 3);
-    }
-
-    .form-label-group input:not(:placeholder-shown)~label {
-      padding-top: calc(var(--input-padding-y) / 3);
-      padding-bottom: calc(var(--input-padding-y) / 3);
-      font-size: 12px;
-      color: #777;
-    }*/
-
-    .btn-google {
-      color: white;
-      background-color: #ea4335;
-    }
-
-    .btn-facebook {
-      color: white;
-      background-color: #fbd1ff;
-    }
-
-    /* Fallback for Edge
-    -------------------------------------------------- */
-
     @supports (-ms-ime-align: auto) {
       .form-label-group>label {
         display: none;
@@ -137,9 +109,6 @@
       }
     }
 
-    /* Fallback for IE
-    -------------------------------------------------- */
-
     @media all and (-ms-high-contrast: none),
     (-ms-high-contrast: active) {
       .form-label-group>label {
@@ -148,7 +117,7 @@
       .form-label-group input:-ms-input-placeholder {
         color: #777;
       }
-    }s
+    }
 
   </style>
 </head>
@@ -164,12 +133,11 @@
               <input type="text" id="user_name" class="form-control" placeholder="Loginni kiriting" name="username">
               <label for="user_name"></label>
             </div>
-
             <div class="form-label-group">
               <input type="password" id="inputPassword" class="form-control" placeholder="Parolni kiriting" name="password">
               <label for="inputPassword"></label>
             </div>
-            <button class="btn btn-lg btn-primary  btn-block text-uppercase" type="submit">Kirish</button>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" style="font-weight: bold;" type="submit">Kirish</button>
           </form>
         </div>
       </div>
