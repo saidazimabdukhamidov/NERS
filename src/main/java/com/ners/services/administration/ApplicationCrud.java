@@ -98,6 +98,42 @@ public class ApplicationCrud {
     return "registration-table";
   }
 
+  public String readArchive(Model model) {
+    ArrayList<Applicant> applicants = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.ARCHIVE");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Applicant a = new Applicant();
+        a.setApplicant_id(rs.getInt("applicant_id"));
+        a.setFull_name(rs.getString("full_name"));
+        a.setBirth_date(rs.getString("birth_date"));
+        a.setStudy_place(rs.getString("study_place"));
+        a.setSubject(rs.getString("subject"));
+        a.setChosen_time(rs.getString("chosen_time"));
+        a.setParent_name(rs.getString("parent_name"));
+        a.setAddress(rs.getString("address"));
+        a.setPhone_number(rs.getString("phone_number"));
+        a.setFound_where(rs.getString("found_where"));
+        a.setState(rs.getString("state"));
+        applicants.add(a);
+      }
+      model.addAttribute("archives", applicants);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    return "archive-table";
+  }
+
   public String editApplication(HttpServletRequest request, Model model) {
     ArrayList<Applicant> applicants = new ArrayList<>();
     Connection conn = null;
@@ -185,7 +221,7 @@ public class ApplicationCrud {
     CallableStatement cs = null;
     try {
       conn = hds.getConnection();
-      cs = conn.prepareCall("{CALL NERS.APPLICANT_DELETE_P(?)}");
+      cs = conn.prepareCall("{CALL NERS.APPLICANT_ARCHIVE_P(?)}");
       cs.setInt(1, Integer.parseInt(request.getParameter("applicant_id")));
       cs.executeUpdate();
     } catch (Exception e) {

@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>Arizalar ro'yxati!</title>
+  <title>Arizalar arxivi!</title>
   <link href="assets/images/school.png" rel="shortcut icon">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -29,13 +29,13 @@
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" style="color: #5a6268; font-weight: bold;">
+              <a th:onclick="|loadForm('/application-list')|" class="nav-link"
+                 style="color: #5a6268; font-weight: bold;">
                 Administratsiya
               </a>
             </li>
             <li class="nav-item">
-              <a th:onclick="|loadForm('/archive-list')|" class="nav-link"
-                 style="color: #5a6268; font-weight: bold;">
+              <a class="nav-link" style="color: #5a6268; font-weight: bold; margin-bottom: 10px;">
                 Arxiv
               </a>
             </li>
@@ -43,9 +43,9 @@
         </div>
       </nav>
       <div class="col-md-10 mt-3 flex-column">
-        <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary fas fa-edit"
-                style="margin-bottom: 10px;">Ariza qo'shish
-        </button>
+        <!--        <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary fas fa-edit"-->
+        <!--                style="margin-bottom: 10px;">Ariza qo'shish-->
+        <!--        </button>-->
         <table class="table table-bordered table-hover">
           <thead>
           <tr style="color: #5f6371;">
@@ -59,33 +59,33 @@
             <th>Telefon raqami</th>
             <th>Qayerdan esitganligi</th>
             <th>Status</th>
-            <th>Amallar</th>
+            <!--            <th>Amallar</th>-->
           </tr>
           </thead>
           <tbody>
-          <tr th:each="app : ${applicants}">
-            <td th:text="${app.full_name}"></td>
-            <td th:text="${app.birth_date}"></td>
-            <td th:text="${app.study_place}"></td>
-            <td th:text="${app.subject}"></td>
-            <td th:text="${app.chosen_time}"></td>
-            <td th:text="${app.parent_name}"></td>
-            <td th:text="${app.address}"></td>
-            <td th:text="${app.phone_number}"></td>
-            <td th:text="${app.found_where}"></td>
-            <td th:text="${app.state}"></td>
-            <td hidden th:text="${app.applicant_id}"></td>
-            <td style="padding-left: 23px;">
-              <div class="row">
-                <div>
-                  <button class="btn btn-sm btn-primary fas fa-pen"
-                          th:onclick="|updateApplication(${app.applicant_id})|">
-                  </button>
-                  <button class="btn btn-sm btn-danger fas fa-times" type="button"
-                          th:onclick="|deleteApplication(${app.applicant_id})|">
-                  </button>
-                </div>
+          <tr th:each="ar : ${archives}">
+            <td th:text="${ar.full_name}"></td>
+            <td th:text="${ar.birth_date}"></td>
+            <td th:text="${ar.study_place}"></td>
+            <td th:text="${ar.subject}"></td>
+            <td th:text="${ar.chosen_time}"></td>
+            <td th:text="${ar.parent_name}"></td>
+            <td th:text="${ar.address}"></td>
+            <td th:text="${ar.phone_number}"></td>
+            <td th:text="${ar.found_where}"></td>
+            <td th:text="${ar.state}"></td>
+            <td hidden th:text="${ar.applicant_id}"></td>
+            <!--            <td style="padding-left: 23px;">-->
+            <div class="row">
+              <div>
+                <!--                  <button class="btn btn-sm btn-primary fas fa-pen"-->
+                <!--                          th:onclick="|updateApplication(${app.applicant_id})|">-->
+                <!--                  </button>-->
+                <!--                  <button class="btn btn-sm btn-danger fas fa-tra" type="button"-->
+                <!--                          th:onclick="|deleteApplication(${arc.applicant_id})|">-->
+                <!--                  </button>-->
               </div>
+            </div>
             </td>
           </tr>
           </tbody>

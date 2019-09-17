@@ -46,4 +46,9 @@ public class Administration {
   public String readApplication(Model model) {
     return applicationCrud.readApplication(model);
   }
+
+  @GetMapping("/archive-list")
+  public String readArchive(Model model) {
+    return applicationCrud.readArchive(model);
+  }
 }
