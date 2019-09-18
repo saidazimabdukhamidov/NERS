@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
   <title>Ariza to'ldirish</title>
+  <link href="assets/images/school.png" rel="shortcut icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/master.css">
@@ -25,12 +26,18 @@
           <input type="text" class="form-control" id="mname" name="study_place">
         </div>
         <div class="form-group">
-          <label for="day">Tanlangan kurs:</label>
-          <input type="text" class="form-control" id="day" name="subject">
+          <label for="subjects">Tanlangan kurs:</label>
+          <select type="text" class="form-control" id="subjects" name="subject">
+            <option th:each="subject : ${subjects}" th:text="${subject.subject_name}">
+            </option>
+          </select>
         </div>
         <div class="form-group">
           <label for="ishjoyi">Dars vaqti:</label>
-          <input type="text" class="form-control" id="ishjoyi" name="chosen_time">
+          <select type="text" class="form-control" id="ishjoyi" name="chosen_time">
+            <option th:each="time : ${times}" th:text="${time.subject_time}">
+            </option>
+          </select>
         </div>
         <div class="form-group">
           <label for="togarak">Ota-Onasining ismi:</label>
@@ -46,11 +53,15 @@
         </div>
         <div class="form-group">
           <label for="address">Qayerdan eshitganligi:</label>
-          <input type="text" class="form-control" id="address" name="found_where">
+          <select type="text" class="form-control" id="address" name="found_where">
+            <option th:each="found : ${founds}" th:text="${found.type_name}"></option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="phone">Status:</label>
-          <input type="text" class="form-control" id="phone" name="state">
+          <label for="status">Status:</label>
+          <select type="text" class="form-control" id="status" name="state">
+            <option th:each="dept : ${depts}" th:text="${dept.state_type}"></option>
+          </select>
         </div>
         <div class="d-flex justify-content-between">
           <input type="button" value="Bekor qilish" onclick="history.back()" class="btn btn-sm btn-light">

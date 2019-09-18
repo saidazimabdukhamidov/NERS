@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Ariza o'zgartirish</title>
+  <link href="assets/images/school.png" rel="shortcut icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/master.css">
@@ -30,13 +31,17 @@
           <input th:value="${app.study_place}" type="text" class="form-control" id="mname" name="study_place">
         </div>
         <div class="form-group">
-          <label for="day">Tanlangan kurs:</label>
-          <input th:value="${app.subject}" type="text" class="form-control" id="day" name="subject">
-        </div>
+          <label for="subjects">Tanlangan kurs:</label>
+          <select type="text" class="form-control" id="subjects" name="subject">
+            <option th:each="subject : ${subjects}" th:text="${subject.subject_name}">
+            </option>
+          </select> </div>
         <div class="form-group">
           <label for="ishjoyi">Dars vaqti:</label>
-          <input th:value="${app.chosen_time}" type="text" class="form-control" id="ishjoyi" name="chosen_time">
-        </div>
+          <select type="text" class="form-control" id="ishjoyi" name="chosen_time">
+            <option th:each="time : ${times}" th:text="${time.subject_time}">
+            </option>
+          </select></div>
         <div class="form-group">
           <label for="togarak">Ota-Onasining ismi:</label>
           <input th:value="${app.parent_name}" type="text" class="form-control" id="togarak" name="parent_name">
@@ -51,15 +56,20 @@
         </div>
         <div class="form-group">
           <label for="address">Qayerdan eshitganligi:</label>
-          <input th:value="${app.found_where}" type="text" class="form-control" id="address" name="found_where">
+          <select type="text" class="form-control" id="address" name="found_where">
+            <option th:each="found : ${founds}" th:text="${found.type_name}"></option>
+          </select>
         </div>
         <div class="form-group">
           <label for="phone">Status:</label>
-          <input th:value="${app.state}" type="text" class="form-control" id="phone" name="state">
+          <select th:value="${app.state}" type="text" class="form-control" id="phone" name="state">
+            <option th:each="dept : ${depts}" th:text="${dept.state_type}"></option>
+          </select>
         </div>
         <div class="d-flex justify-content-between">
           <input type="button" value="Bekor qilish" onclick="history.back()" class="btn btn-sm btn-light">
-          <button onclick="doSaveForm(event, '/application-update', 'application-update')" type="submit" class="btn btn-sm btn-primary justify-content-end btn-cancel"
+          <button onclick="doSaveForm(event, '/application-update', 'application-update')" type="submit"
+                  class="btn btn-sm btn-primary justify-content-end btn-cancel"
                   style="margin-left: 90px;">Saqlash
           </button>
         </div>

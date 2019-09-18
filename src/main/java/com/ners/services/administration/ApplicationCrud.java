@@ -1,7 +1,8 @@
 package com.ners.services.administration;
 
 import com.google.gson.JsonObject;
-import com.ners.modules.Applicant;
+import com.ners.modules.Time;
+import com.ners.modules.*;
 import com.ners.utils.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 @Service
@@ -136,6 +134,10 @@ public class ApplicationCrud {
 
   public String editApplication(HttpServletRequest request, Model model) {
     ArrayList<Applicant> applicants = new ArrayList<>();
+    ArrayList<Dept> depts = new ArrayList<>();
+    ArrayList<Subjects> subjects = new ArrayList<>();
+    ArrayList<Time> times = new ArrayList<>();
+    ArrayList<Found> founds = new ArrayList<>();
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -163,6 +165,85 @@ public class ApplicationCrud {
       }
       model.addAttribute("applicants", applicants);
     } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.FOUND_WHERE");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Found f = new Found();
+        f.setType_id(rs.getInt("type_id"));
+        f.setType_name(rs.getString("type_name"));
+        founds.add(f);
+      }
+      model.addAttribute("founds", founds);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.MAIN_SUBJECTS");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Subjects s = new Subjects();
+        s.setSubject_id(rs.getInt("subject_id"));
+        s.setSubject_name(rs.getString("subject_name"));
+        s.setSubject_teacher(rs.getString("subject_teacher"));
+        s.setLevel(rs.getString("level"));
+        s.setPrice(rs.getInt("price"));
+        subjects.add(s);
+      }
+      model.addAttribute("subjects", subjects);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.CLASS_TIME");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        com.ners.modules.Time t = new Time();
+        t.setSubject_id(rs.getInt("subject_id"));
+        t.setSubject_time(rs.getString("subject_time"));
+        times.add(t);
+      }
+      model.addAttribute("times", times);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.MAIN_DEPT");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Dept d = new Dept();
+        d.setState_id(rs.getInt("state_id"));
+        d.setState_type(rs.getString("state_type"));
+        depts.add(d);
+      }
+      model.addAttribute("depts", depts);
+    } catch (SQLException e) {
       e.printStackTrace();
     } finally {
       DataBase.close(rs);
