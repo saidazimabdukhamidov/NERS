@@ -59,7 +59,7 @@
             <th>Telefon raqami</th>
             <th>Qayerdan esitganligi</th>
             <th>Status</th>
-            <!--            <th>Amallar</th>-->
+            <th>Amallar</th>
           </tr>
           </thead>
           <tbody>
@@ -74,6 +74,18 @@
             <td th:text="${ar.phone_number}"></td>
             <td th:text="${ar.found_where}"></td>
             <td th:text="${ar.state}"></td>
+            <td style="padding-left: 23px;">
+              <div class="row">
+                <div>
+                  <button class="btn btn-sm btn-primary"
+                          th:onclick="|restoreArchive(${app.applicant_id})|">Restore
+                  </button>
+                  <button class="btn btn-sm btn-danger" type="button"
+                          th:onclick="|deleteArchive(${app.applicant_id})|">Delete
+                  </button>
+                </div>
+              </div>
+            </td>
             <td hidden th:text="${ar.applicant_id}"></td>
           </tr>
           </tbody>

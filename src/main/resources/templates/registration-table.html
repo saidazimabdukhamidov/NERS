@@ -42,10 +42,14 @@
           </ul>
         </div>
       </nav>
-      <div class="col-md-10 mt-3 flex-column">
-        <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary fas fa-edit"
-                style="margin-bottom: 10px;">Ariza qo'shish
-        </button>
+      <div class="col-md-10 mt-3 flex-column shadow-lg">
+        <div class="form-inline">
+          <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary fas fa-edit"
+                  style="margin-top: 5px; margin-bottom: 10px;">
+          </button>
+          <input class="form-control input-sm" id="search" type="text" placeholder="Izlash..."
+                 style="margin-top: 5px; margin-bottom: 10px; margin-left: 15px; width: 300px; height: 31px;">
+        </div>
         <table class="table table-bordered table-hover">
           <thead>
           <tr style="color: #5f6371;">
@@ -62,7 +66,7 @@
             <th>Amallar</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id="search-table">
           <tr th:each="app : ${applicants}">
             <td th:text="${app.full_name}"></td>
             <td th:text="${app.birth_date}"></td>
@@ -82,7 +86,7 @@
                           th:onclick="|updateApplication(${app.applicant_id})|">
                   </button>
                   <button class="btn btn-sm btn-danger fas fa-times" type="button"
-                          th:onclick="|deleteApplication(${app.applicant_id})|">
+                          th:onclick="|archiveApplication(${app.applicant_id})|">
                   </button>
                 </div>
               </div>
@@ -96,5 +100,16 @@
 </div>
 <script src="/assets/js/jquery-3.4.1.min.js"></script>
 <script th:src="@{/assets/js/common.js}"></script>
+<script>
+  $(document).ready(function () {
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#search-table tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 </body>
 </html>
+

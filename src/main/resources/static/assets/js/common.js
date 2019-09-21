@@ -6,8 +6,16 @@ function updateApplication(id) {
   window.location = 'application-update?applicant_id=' + id;
 }
 
-function deleteApplication(id) {
-  document.location ='application-delete?applicant_id=' + id;
+function archiveApplication(id) {
+  document.location = 'application-archive?applicant_id=' + id;
+}
+
+function restoreArchive(id) {
+  document.location = 'archive-restore?applicant_id=' + id;
+}
+
+function deleteArchive(id) {
+  document.location = 'archive-delete?applicant_id=' + id;
 }
 
 function doSaveForm(event, url, formId) {

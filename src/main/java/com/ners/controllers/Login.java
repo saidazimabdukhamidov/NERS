@@ -1,6 +1,6 @@
 package com.ners.controllers;
 
-import com.ners.services.main.Authorisation;
+import com.ners.services.authorisation.Authorisation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

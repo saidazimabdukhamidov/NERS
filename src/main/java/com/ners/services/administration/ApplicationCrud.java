@@ -60,6 +60,96 @@ public class ApplicationCrud {
     return json.toString();
   }
 
+  public String readInsertApplication(Model model) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    ArrayList<Dept> depts = new ArrayList<>();
+    ArrayList<Subjects> subjects = new ArrayList<>();
+    ArrayList<Time> times = new ArrayList<>();
+    ArrayList<Found> founds = new ArrayList<>();
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.MAIN_DEPT");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Dept d = new Dept();
+        d.setState_id(rs.getInt("state_id"));
+        d.setState_type(rs.getString("state_type"));
+        depts.add(d);
+      }
+      model.addAttribute("depts", depts);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.MAIN_SUBJECTS");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Subjects s = new Subjects();
+        s.setSubject_id(rs.getInt("subject_id"));
+        s.setSubject_name(rs.getString("subject_name"));
+        s.setSubject_teacher(rs.getString("subject_teacher"));
+        s.setLevel(rs.getString("level"));
+        s.setPrice(rs.getInt("price"));
+        subjects.add(s);
+      }
+      model.addAttribute("subjects", subjects);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.CLASS_TIME");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Time t = new Time();
+        t.setSubject_id(rs.getInt("subject_id"));
+        t.setSubject_time(rs.getString("subject_time"));
+        times.add(t);
+      }
+      model.addAttribute("times", times);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    try {
+      conn = hds.getConnection();
+      ps = conn.prepareStatement("SELECT * FROM NERS.FOUND_WHERE");
+      ps.execute();
+      rs = ps.getResultSet();
+      while (rs.next()) {
+        Found f = new Found();
+        f.setType_id(rs.getInt("type_id"));
+        f.setType_name(rs.getString("type_name"));
+        founds.add(f);
+      }
+      model.addAttribute("founds", founds);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(rs);
+      DataBase.close(ps);
+      DataBase.close(conn);
+    }
+    return "application-insert";
+  }
+
   public String readApplication(Model model) {
     ArrayList<Applicant> applicants = new ArrayList<>();
     Connection conn = null;
@@ -312,5 +402,39 @@ public class ApplicationCrud {
       DataBase.close(conn);
     }
     return "redirect:/application-list";
+  }
+
+  public String deleteArchive(HttpServletRequest request) {
+    Connection conn = null;
+    CallableStatement cs = null;
+    try {
+      conn = hds.getConnection();
+      cs = conn.prepareCall("{CALL NERS.APPLICANT_DELETE_P(?)}");
+      cs.setInt(1, Integer.parseInt(request.getParameter("applicant_id")));
+      cs.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(cs);
+      DataBase.close(conn);
+    }
+    return "redirect:/archive-table";
+  }
+
+  public String restoreArchive(HttpServletRequest request) {
+    Connection conn = null;
+    CallableStatement cs = null;
+    try {
+      conn = hds.getConnection();
+      cs = conn.prepareCall("{CALL NERS.APPLICANT_RESTORE_P(?)}");
+      cs.setInt(1, Integer.parseInt(request.getParameter("applicant_id")));
+      cs.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      DataBase.close(cs);
+      DataBase.close(conn);
+    }
+    return "redirect:/archive-table";
   }
 }

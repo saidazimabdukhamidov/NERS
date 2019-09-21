@@ -1,4 +1,4 @@
-package com.ners.services.main;
+package com.ners.services.authorisation;
 
 import com.google.gson.JsonObject;
 import com.ners.modules.Users;
