@@ -418,7 +418,7 @@ public class ApplicationCrud {
       DataBase.close(cs);
       DataBase.close(conn);
     }
-    return "redirect:/archive-table";
+    return "redirect:/archive-list";
   }
 
   public String restoreArchive(HttpServletRequest request) {

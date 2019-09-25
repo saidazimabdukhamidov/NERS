@@ -42,7 +42,7 @@
           </ul>
         </div>
       </nav>
-      <div class="col-md-10 mt-3 flex-column">
+      <div class="col-md-10 mt-3 flex-column shadow-lg">
         <!--        <button th:onclick="|loadForm('/application-insert')|" class="btn btn-outline-primary fas fa-edit"-->
         <!--                style="margin-bottom: 10px;">Ariza qo'shish-->
         <!--        </button>-->
@@ -77,11 +77,11 @@
             <td style="padding-left: 23px;">
               <div class="row">
                 <div>
-                  <button class="btn btn-sm btn-primary"
-                          th:onclick="|restoreArchive(${app.applicant_id})|">Restore
+                  <button class="btn btn-sm btn-primary fas fa-trash-restore"
+                          th:onclick="|restoreArchive(${ar.applicant_id})|">
                   </button>
-                  <button class="btn btn-sm btn-danger" type="button"
-                          th:onclick="|deleteArchive(${app.applicant_id})|">Delete
+                  <button class="btn btn-sm btn-danger fas fa-trash" type="button"
+                          th:onclick="|deleteArchive(${ar.applicant_id})|">
                   </button>
                 </div>
               </div>

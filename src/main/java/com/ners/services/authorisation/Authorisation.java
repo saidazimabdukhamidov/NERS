@@ -35,26 +35,9 @@ public class Authorisation {
       ps.setString(2, password);
       ps.execute();
       rs = ps.getResultSet();
-
-//      while (rs.next()) {
-//        Users u = new Users();
-//        u.setUser_id(rs.getInt("user_id"));
-//        u.setFull_name(rs.getString("full_name"));
-//        u.setRole_id(rs.getInt("role_id"));
-//        u.setAbsence(rs.getInt("absence"));
-//        u.setGroup_id(rs.getString("group_id"));
-//        u.setDept(rs.getInt("dept"));
-//        u.setBirth_date(rs.getString("birth_dte"));
-//        u.setPhone_number(rs.getString("phone_number"));
-//        u.setUsername(rs.getString("username"));
-//        u.setPassword(rs.getString("password"));
-//        u.setSalary(rs.getInt("salary"));
-//        user.add(u);
-//        json.addProperty("success", true);
-//      }
       if (rs.next()) {
         json.addProperty("success", true);
-      }else {
+      } else {
         json.addProperty("msg", "Login yoki parol xato!");
       }
     } catch (Exception e) {
